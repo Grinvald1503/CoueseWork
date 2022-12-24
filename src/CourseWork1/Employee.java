@@ -42,9 +42,6 @@ private final int idEmployee;
 
     @Override
     public String toString() {
-        return "ФИО сотрудника - " + fio +
-                ", Зарплата = " + salary +
-                ", Отдел - " + department +
-                ", ID сотрудника - " + idEmployee;
+        return "ФИО сотрудника - " + fio + ", Зарплата = " + salary + ", " + "отдел - " + department + ", ID сотрудника - " + idEmployee;
     }
 }

@@ -1,48 +1,37 @@
 package CourseWork1;
 
+import java.sql.SQLOutput;
+import java.util.Arrays;
+
 public class Main {
-private static Employee[] storage = new Employee[10];
+    private static Employee[] storage = new Employee[10];
 
 
     public static void main(String[] args) {
-        Employee alex = new Employee("Александров Александ Александрович", 50000, "1");
-        Employee alexei = new Employee("Алексеев Алексей Алексеевич", 55000, "1");
-        Employee evgen = new Employee("Евгениев Евгений Евгениевич", 53000, "2");
-        Employee gena = new Employee("Генадьев Генадий Генадиевич", 46000, "2");
-        Employee gricha = new Employee("Григорьев Григорий Григорьевич", 60000, "3");
-        Employee vikrolia = new Employee("Викторьева Виктория Викторовна", 58000, "3");
-        Employee dmitri = new Employee("Дмитриев Дмитрий Дмитриевич", 64000, "4");
-        Employee irina = new Employee("Дмитриева Ирина Александровна", 100000, "4");
-        Employee kiril = new Employee("Кирилов Кирил Викторович", 34000, "5");
-        Employee vova = new Employee("Виладимиров Владимир Владимирович", 70000, "5");
-        storage[0] = alex;
-        storage[1] = alexei;
-        storage[2] = evgen;
-        storage[3] = gena;
-        storage[4] = gricha;
-        storage[5] = vikrolia;
-        storage[6] = dmitri;
-        storage[7] = irina;
-        storage[8] = kiril;
-        storage[9] = vova;
+        storage[0] = new Employee("Александров Александ Александрович", 50000, "1");
+        storage[1] = new Employee("Алексеев Алексей Алексеевич", 55000, "1");
+        storage[2] = new Employee("Евгениев Евгений Евгениевич", 53000, "2");
+        storage[3] = new Employee("Генадьев Генадий Генадиевич", 46000, "2");
+        storage[4] = new Employee("Григорьев Григорий Григорьевич", 60000, "3");
+        storage[5] = new Employee("Викторьева Виктория Викторовна", 58000, "3");
+        storage[6] = new Employee("Дмитриев Дмитрий Дмитриевич", 64000, "4");
+        storage[7] = new Employee("Дмитриева Ирина Александровна", 100000, "4");
+        storage[8] = new Employee("Кирилов Кирил Викторович", 34000, "5");
+        storage[9] = new Employee("Виладимиров Владимир Владимирович", 70000, "5");
 
 
-  //       allDate();
-  //      System.out.println(amountOfSalaries());
-  //      System.out.println(minSalary());
-  //      System.out.println(maxSalary());
-  //      System.out.println(averageSalary());
-  //      fullNameEmployees();
-
-
+        searchEmployeeSalaryMore(50000);
     }
-    public static void allDate () {
+
+
+    public static void searchAllDate() {
         for (Employee value : storage) {
             System.out.println(value);
 
         }
     }
-    public static int amountOfSalaries () {
+
+    public static int searchAmountOfSalaries() {
         int sum = 0;
         for (Employee value : storage) {
             sum = sum + value.getSalary();
@@ -50,7 +39,8 @@ private static Employee[] storage = new Employee[10];
         }
         return sum;
     }
-    public static int minSalary() {
+
+    public static int searchMinSalary() {
         int min = Integer.MAX_VALUE;
         for (Employee value : storage) {
             if (value.getSalary() < min) {
@@ -60,7 +50,8 @@ private static Employee[] storage = new Employee[10];
         }
         return min;
     }
-    public static int maxSalary() {
+
+    public static int searchMaxSalary() {
         int max = Integer.MIN_VALUE;
         for (Employee value : storage) {
             if (value.getSalary() > max) {
@@ -70,14 +61,120 @@ private static Employee[] storage = new Employee[10];
         }
         return max;
     }
-    public static int averageSalary() {
-        int sum = amountOfSalaries();
-        return amountOfSalaries() / storage.length;
+
+    public static int SearchAverageSalary() {
+        return searchAmountOfSalaries() / storage.length;
     }
-    public static void fullNameEmployees () {
+
+    public static void searchFullNameEmployees() {
         for (Employee value : storage) {
             System.out.println("Фио сотрудника - " + value.getFio());
         }
     }
 
+    public static void changingIndexSalary(int percent) {
+        for (Employee employee : storage) {
+            employee.setSalary(employee.getSalary() + (employee.getSalary() / 100 * percent));
+        }
+    }
+
+    public static String searchMinSalaryDepart(String department) {
+        int min = Integer.MAX_VALUE;
+        String employee = "";
+        for (Employee value : storage) {
+            String dep = value.getDepartment();
+            if (dep.equals(department) && min > value.getSalary()) {
+                min = value.getSalary();
+                employee = value.getFio();
+
+            }
+
+
+        }
+        return employee;
+    }
+
+    public static String searchMaxSalaryDepart(String department) {
+        int max = Integer.MIN_VALUE;
+        String employee = "";
+        for (Employee value : storage) {
+            String dep = value.getDepartment();
+            if (dep.equals(department) && max < value.getSalary()) {
+                max = value.getSalary();
+                employee = value.getFio();
+
+            }
+
+
+        }
+        return employee;
+    }
+
+    public static int searchAverageSalaryDepart(String department) {
+        int sum = 0;
+        for (Employee value : storage) {
+            String dep = value.getDepartment();
+            if (dep.equals(department)) {
+                sum = sum + value.getSalary();
+
+            }
+
+
+        }
+        return sum;
+    }
+
+    public static int searchGeneralSalaryDepart(String department) {
+        int sum = 0;
+        int employee = 0;
+        for (Employee value : storage) {
+            String dep = value.getDepartment();
+            if (dep.equals(department)) {
+                sum = sum + value.getSalary();
+                employee++;
+
+            }
+
+
+        }
+        return sum / employee;
+    }
+
+    public static void changingIndexSalaryDepart(String department, int percent) {
+        for (Employee employee : storage) {
+            String dep = employee.getDepartment();
+            if (dep.equals(department))
+                employee.setSalary(employee.getSalary() + (employee.getSalary() / 100 * percent));
+        }
+    }
+
+    public static void searchEmployeeDepart(String department) {
+        for (Employee value : storage) {
+            String dep = value.getDepartment();
+            if (dep.equals(department)) {
+                System.out.println("ID - " + value.getIdEmployee() + ", ФИО сотрудника - " + value.getFio() + ", " + " зарплата - " + value.getSalary());
+            }
+
+        }
+
+
+    }
+
+    public static void searchEmployeeSalaryBelow(int integer) {
+        for (Employee value : storage) {
+            if (value.getSalary() < integer) {
+                System.out.println("ID - " + value.getIdEmployee() + ", ФИО сотрудника - " + value.getFio() + ", " + " зарплата - " + value.getSalary());
+            }
+        }
+
+    }
+    public static void searchEmployeeSalaryMore(int integer) {
+        for (Employee value : storage) {
+            if (value.getSalary() >= integer) {
+                System.out.println("ID - " + value.getIdEmployee() + ", ФИО сотрудника - " + value.getFio() + ", " + " зарплата - " + value.getSalary());
+            }
+        }
+
+    }
 }
+
