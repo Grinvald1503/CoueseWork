@@ -1,13 +1,14 @@
 package CourseWork1;
+
 public class Employee {
-private String fio;
-private int salary;
-private String department;
-private static int id = 1;
+    private String fio;
+    private int salary;
+    private String department;
+    private static int id = 1;
 
-private final int idEmployee;
+    private final int idEmployee;
 
-    public Employee (String fio, int salary, String department) {
+    public Employee(String fio, int salary, String department) {
         this.fio = fio;
         this.salary = salary;
         this.department = department;
