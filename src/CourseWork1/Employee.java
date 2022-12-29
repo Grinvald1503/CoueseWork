@@ -4,16 +4,16 @@ public class Employee {
     private String fio;
     private int salary;
     private String department;
-    private static int id = 1;
+    private static int counter = 1;
 
-    private final int idEmployee;
+    private final int id;
 
     public Employee(String fio, int salary, String department) {
         this.fio = fio;
         this.salary = salary;
         this.department = department;
-        this.idEmployee = id;
-        id++;
+        this.id = counter;
+        counter++;
 
     }
 
@@ -29,8 +29,8 @@ public class Employee {
         return department;
     }
 
-    public int getIdEmployee() {
-        return idEmployee;
+    public int getId() {
+        return id;
     }
 
     public void setSalary(int salary) {
@@ -43,6 +43,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "ФИО сотрудника - " + fio + ", Зарплата = " + salary + ", " + "отдел - " + department + ", ID сотрудника - " + idEmployee;
+        return "ФИО сотрудника - " + fio + ", Зарплата = " + salary + ", " + "отдел - " + department + ", ID сотрудника - " + id;
     }
 }
